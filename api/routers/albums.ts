@@ -6,29 +6,6 @@ import {AlbumType} from "../types";
 
 const albumsRouter = express.Router();
 
-albumsRouter.get('/', async (req, res) => {
-  try {
-    const albums = await Album.find().populate('artist');
-    return res.send(albums)
-  } catch (e) {
-    return res.sendStatus(500);
-  }
-});
-
-albumsRouter.get('/:id', async (req, res) => {
-  try {
-    const album = await Album.findById(req.params.id).populate('artist');
-
-    if (!album) {
-      res.status(404).send({error: 'Album is not found'});
-    }
-
-    return res.send(album);
-  } catch (e) {
-    return res.sendStatus(500);
-  }
-});
-
 albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
   if (!req.body.title || !req.body.artist || !req.body.year) {
     return res.status(400).send({error: 'All fields are required'});
@@ -52,6 +29,29 @@ albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
     } else {
       return next(e);
     }
+  }
+});
+
+albumsRouter.get('/', async (req, res) => {
+  try {
+    const albums = await Album.find().populate('artist');
+    return res.send(albums)
+  } catch (e) {
+    return res.sendStatus(500);
+  }
+});
+
+albumsRouter.get('/:id', async (req, res) => {
+  try {
+    const album = await Album.findById(req.params.id).populate('artist');
+
+    if (!album) {
+      res.status(404).send({error: 'Album is not found'});
+    }
+
+    return res.send(album);
+  } catch (e) {
+    return res.sendStatus(500);
   }
 });
 

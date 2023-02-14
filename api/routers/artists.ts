@@ -6,15 +6,6 @@ import {ArtistType} from "../types";
 
 const artistsRouter = express.Router();
 
-artistsRouter.get('/', async (req, res) => {
-  try {
-    const artists = await Artist.find();
-    return res.send(artists);
-  } catch (e) {
-    return res.sendStatus(500);
-  }
-});
-
 artistsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
   if (!req.body.name) {
     return res.status(400).send({error: 'All fields are required'});
@@ -37,6 +28,15 @@ artistsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => 
     } else {
       return next(e);
     }
+  }
+});
+
+artistsRouter.get('/', async (req, res) => {
+  try {
+    const artists = await Artist.find();
+    return res.send(artists);
+  } catch (e) {
+    return res.sendStatus(500);
   }
 });
 
