@@ -1,8 +1,8 @@
 import express from "express";
+import mongoose from "mongoose";
 import Artist from "../models/Artist";
 import {imagesUpload} from "../multer";
 import {ArtistType} from "../types";
-import mongoose from "mongoose";
 
 const artistsRouter = express.Router();
 

@@ -1,5 +1,6 @@
 import mongoose, {Types} from "mongoose";
 import Artist from "./Artist";
+
 const Schema = mongoose.Schema;
 
 const AlbumsSchema = new Schema({
@@ -19,7 +20,7 @@ const AlbumsSchema = new Schema({
     type: String,
     required: true
   },
-  cover:{
+  image:{
     type: String
   }
 });
