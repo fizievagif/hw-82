@@ -1,7 +1,7 @@
 import {Model, model, Schema} from "mongoose";
-import {IUser} from "../types";
-import bcrypt from 'bcrypt';
 import {randomUUID} from "crypto";
+import bcrypt from 'bcrypt';
+import {IUser} from "../types";
 
 const SALT_WORK_FACTOR = 9;
 
@@ -40,7 +40,7 @@ UserSchema.pre('save', async function(next) {
 });
 
 UserSchema.set('toJSON', {
-  transform: (doc, ret, options) => {
+  transform: (doc, ret) => {
     delete ret.password;
     return ret;
   }
