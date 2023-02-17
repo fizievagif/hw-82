@@ -17,6 +17,12 @@ export interface TrackType {
   duration: string,
 }
 
+export interface TrackHistoryType {
+  user: string,
+  track: string,
+  datetime: string,
+}
+
 export interface IUser {
   username: string,
   password: string,
