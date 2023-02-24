@@ -7,13 +7,14 @@ export interface ArtistType {
 export interface AlbumType {
   title: string,
   artist: string,
-  year: string,
+  year: number,
   image: string | null,
 }
 
 export interface TrackType {
   title: string,
   album: string,
+  numberOfTrack: number,
   duration: string,
 }
 

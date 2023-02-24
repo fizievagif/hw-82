@@ -1,4 +1,4 @@
-import express from "express";
+  import express from "express";
 import mongoose from "mongoose";
 import Album from "../models/Album";
 import {imagesUpload} from "../multer";
@@ -34,7 +34,7 @@ albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
 
 albumsRouter.get('/', async (req, res) => {
   try {
-    const albums = await Album.find().populate('artist');
+    const albums = await Album.find().populate('artist').sort({'year': 1});
     return res.send(albums)
   } catch (e) {
     return res.sendStatus(500);

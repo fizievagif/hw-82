@@ -16,6 +16,10 @@ const TrackSchema = new Schema({
       validator: async (value: Types.ObjectId) => Album.findById(value)
     }
   },
+  numberOfTrack: {
+    type: Number,
+    required: true
+  },
   duration:{
     type: String,
     required: true

@@ -14,6 +14,7 @@ tracksRouter.post('/', async (req, res, next) => {
   const trackData: TrackType = {
     album: req.body.album,
     title: req.body.title,
+    numberOfTrack: req.body.numberOfTrack,
     duration: req.body.duration,
   };
 
@@ -42,7 +43,7 @@ tracksRouter.get('/', async (req, res) => {
       const albums = await Album.find({artist: artist});
       response = await Track.find().where('album').in(albums).exec();
     } else if (album) {
-      response = await Track.find({album: album});
+      response = await Track.find({album: album}).populate('album').sort({number: 1});
     } else {
       response = await Track.find().populate('album');
     }
