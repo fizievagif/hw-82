@@ -1,9 +1,10 @@
 import React from 'react';
+import Artist from "./Containers/Artist/Artist";
 
 function App() {
   return (
     <div>
-      Vagif
+      <Artist/>
     </div>
   );
 }
