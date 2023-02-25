@@ -3,3 +3,11 @@ export interface ArtistType {
   name: string;
   image: string | null;
 }
+
+export interface AlbumsType {
+  _id: string;
+  artist: ArtistType;
+  title: string;
+  year: number;
+  image: string | null;
+}

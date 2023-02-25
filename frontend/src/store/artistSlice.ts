@@ -3,12 +3,12 @@ import {RootState} from "../app/store";
 import {ArtistType} from "../types";
 import {fetchArtists} from "./artistThunks";
 
-interface MessagesState {
+interface ArtistsState {
   items: ArtistType[],
   fetchLoading: boolean,
 }
 
-const initialState: MessagesState = {
+const initialState: ArtistsState = {
   items: [],
   fetchLoading: false,
 }
@@ -21,9 +21,9 @@ export const artistSlice = createSlice({
     builder.addCase(fetchArtists.pending, (state) => {
       state.fetchLoading = true;
     });
-    builder.addCase(fetchArtists.fulfilled, (state, {payload: messages}) => {
+    builder.addCase(fetchArtists.fulfilled, (state, {payload: artists}) => {
       state.fetchLoading = false;
-      state.items = messages;
+      state.items = artists;
     });
     builder.addCase(fetchArtists.rejected, (state) => {
       state.fetchLoading = false;

@@ -34,7 +34,13 @@ albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
 
 albumsRouter.get('/', async (req, res) => {
   try {
-    const albums = await Album.find().populate('artist').sort({'year': 1});
+    let albums;
+    if (req.query.artist) {
+      albums = await Album.find({artist: req.query.artist}).populate('artist').sort({'year': 1});
+    } else {
+      albums = await Album.find().sort({year: 1});
+    }
+
     return res.send(albums)
   } catch (e) {
     return res.sendStatus(500);
