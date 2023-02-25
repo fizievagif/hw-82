@@ -1,5 +1,5 @@
-import {ArtistType} from "../types";
-import axiosApi from "../axiosApi";
+import {ArtistType} from "../../types";
+import axiosApi from "../../axiosApi";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const fetchArtists = createAsyncThunk<ArtistType[]>(

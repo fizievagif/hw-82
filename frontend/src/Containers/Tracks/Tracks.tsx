@@ -2,14 +2,12 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {useParams} from "react-router-dom";
 import {Card, CardActionArea, CardContent, Grid, Typography} from "@mui/material";
-import {selectTracks} from "../../store/tracksSlice";
-import {fetchTracks} from "../../store/tracksThunks";
-import {selectAlbums} from "../../store/albumsSlice";
+import {selectTracks} from "../../features/tracks/tracksSlice";
+import {fetchTracks} from "../../features/tracks/tracksThunks";
 
 const Tracks = () => {
   const dispatch = useAppDispatch();
   const tracks = useAppSelector(selectTracks);
-  const albums = useAppSelector(selectAlbums);
   const {id} = useParams() as {id: string};
 
   useEffect(() => {
@@ -18,11 +16,6 @@ const Tracks = () => {
 
   return (
     <Grid container rowSpacing={1}>
-      <Grid item>
-        {/*<Typography variant="h4">Artist name: {(albums.length > 0) ? albums[0].artist.name : "Void"}</Typography>*/}
-        {/*<Typography variant="h4">Album name: {tracks[0].album.title}</Typography>*/}
-      </Grid>
-
       <Grid item container alignItems="center">
         {tracks.map(track => (
           <Card sx={{ width: 340, marginRight: 5 }} key={track._id}>
@@ -40,7 +33,7 @@ const Tracks = () => {
               </CardContent>
             </CardActionArea>
           </Card>
-        ))}
+        )).sort((a, b) => a > b ? 1 : +1)}
       </Grid>
     </Grid>
   );

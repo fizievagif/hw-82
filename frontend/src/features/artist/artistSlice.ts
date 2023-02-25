@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {RootState} from "../app/store";
-import {ArtistType} from "../types";
+import {RootState} from "../../app/store";
+import {ArtistType} from "../../types";
 import {fetchArtists} from "./artistThunks";
 
 interface ArtistsState {
