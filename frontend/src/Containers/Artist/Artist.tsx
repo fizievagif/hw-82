@@ -12,6 +12,7 @@ const Artist = () => {
   useEffect(() => {
     dispatch(fetchArtists());
   }, [dispatch]);
+
   return (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item container justifyContent="space-between" alignItems="center">

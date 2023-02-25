@@ -3,7 +3,7 @@ import axiosApi from "../axiosApi";
 import {AlbumsType} from "../types";
 
 export const fetchAlbums = createAsyncThunk<AlbumsType[], string>(
-  'artists/fetchAll',
+  'albums/fetchAll',
   async (id) => {
     let response;
 

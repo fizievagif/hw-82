@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {fetchAlbums} from "../../store/albumsThunks";
 import {selectAlbums} from "../../store/albumsSlice";
 import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {Link, useParams} from "react-router-dom";
-// import {Link} from "react-router-dom";
+import {fetchAlbums} from "../../store/albumsThunks";
 
 const Albums = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +17,7 @@ const Albums = () => {
 
   return (
     <Grid container rowSpacing={1}>
-      <h1>
-        {(albums.length > 0) ? albums[0].artist.name : "All"}
-      </h1>
+      <Typography variant="h4">Artist name: {(albums.length > 0) ? albums[0].artist.name : "Void  "}</Typography>
 
       <Grid item container alignItems="center">
         {albums.map(album => (
@@ -29,7 +26,7 @@ const Albums = () => {
               <CardMedia
                 component="img"
                 height="140"
-                image={cardImage + album.image ? cardImage + album.image : ''}
+                image={cardImage + album.image}
                 alt={album.title}
               />
               <CardContent>

@@ -14,7 +14,7 @@ const initialState: AlbumsState = {
 }
 
 export const albumsSlice = createSlice({
-  name: 'artists',
+  name: 'albums',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -33,4 +33,3 @@ export const albumsSlice = createSlice({
 
 export const albumsReducer = albumsSlice.reducer;
 export const selectAlbums = (state: RootState) => state.albums.items;
-export const selectAlbumsFetching = (state: RootState) => state.albums.fetchLoading;

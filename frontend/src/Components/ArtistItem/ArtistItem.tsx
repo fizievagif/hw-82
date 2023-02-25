@@ -15,12 +15,13 @@ const ArtistItem: React.FC<Props> = ({id, name, image}) => {
     <Link to={'/albums/' + id}>
       <Card sx={{ width: 345 }}>
         <CardActionArea>
+          {image ?
           <CardMedia
             component="img"
             height="140"
-            image={cardImage ? cardImage : ''}
+            image={cardImage}
             alt={name}
-          />
+          /> : null}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}

@@ -33,4 +33,3 @@ export const artistSlice = createSlice({
 
 export const artistReducer = artistSlice.reducer;
 export const selectArtist = (state: RootState) => state.artists.items;
-export const selectArtistsFetching = (state: RootState) => state.artists.fetchLoading;
