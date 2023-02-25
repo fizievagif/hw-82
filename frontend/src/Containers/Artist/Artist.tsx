@@ -14,8 +14,9 @@ const Artist = () => {
   }, [dispatch]);
 
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item container justifyContent="space-between" alignItems="center">
+    <Grid  rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <h1>Artists:</h1>
+      <Grid item container alignItems="center">
         {artists.map(artist => (
           <ArtistItem
             key={artist._id}

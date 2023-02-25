@@ -21,7 +21,7 @@ const Albums = () => {
 
       <Grid item container alignItems="center">
         {albums.map(album => (
-          <Card sx={{ width: 300, marginRight: 10 }} key={album._id}>
+          <Card sx={{ width: 300, margin: 5 }} key={album._id}>
             <CardActionArea>
               <CardMedia
                 component="img"

@@ -13,7 +13,7 @@ const ArtistItem: React.FC<Props> = ({id, name, image}) => {
 
   return (
     <Link to={'/albums/' + id}>
-      <Card sx={{ width: 345 }}>
+      <Card sx={{ width: 345, margin: 5 }}>
         <CardActionArea>
           {image ?
           <CardMedia
