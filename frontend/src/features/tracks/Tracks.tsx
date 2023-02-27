@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {useParams} from "react-router-dom";
 import {Card, CardActionArea, CardContent, Grid, Typography} from "@mui/material";
-import {selectTracks} from "../../features/tracks/tracksSlice";
-import {fetchTracks} from "../../features/tracks/tracksThunks";
+import {selectTracks} from "./tracksSlice";
+import {fetchTracks} from "./tracksThunks";
 
 const Tracks = () => {
   const dispatch = useAppDispatch();

@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {selectAlbums} from "../../features/albums/albumsSlice";
+import {selectAlbums} from "./albumsSlice";
 import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {Link, useParams} from "react-router-dom";
-import {fetchAlbums} from "../../features/albums/albumsThunks";
+import {fetchAlbums} from "./albumsThunks";
 
 const Albums = () => {
   const dispatch = useAppDispatch();

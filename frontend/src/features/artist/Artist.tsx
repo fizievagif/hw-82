@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {selectArtist} from "../../features/artist/artistSlice";
-import {fetchArtists} from "../../features/artist/artistThunks";
+import {selectArtist} from "./artistSlice";
+import {fetchArtists} from "./artistThunks";
 import ArtistItem from "../../Components/ArtistItem/ArtistItem";
 import {Grid} from "@mui/material";
 

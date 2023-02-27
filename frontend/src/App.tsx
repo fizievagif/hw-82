@@ -1,18 +1,30 @@
 import React from 'react';
-import Artist from "./Containers/Artist/Artist";
+import Artist from "./features/artist/Artist";
 import {Route, Routes} from "react-router-dom";
-import Albums from "./Containers/Albums/Albums";
-import Tracks from "./Containers/Tracks/Tracks";
+import Albums from "./features/albums/Albums";
+import Tracks from "./features/tracks/Tracks";
+import Register from "./features/users/Register";
+import AppToolbar from "./Components/UI/AppToolbar/AppToolbar";
+import {Container} from "@mui/material";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Artist/>}/>
-        <Route path='/albums/:id' element={<Albums/>}/>
-        <Route path='/albums/tracks/:id'  element={<Tracks/>}/>
-      </Routes>
-    </div>
+    <>
+      <header>
+        <AppToolbar/>
+      </header>
+
+      <main>
+        <Container maxWidth="xl">
+          <Routes>
+            <Route path="/" element={<Artist/>}/>
+            <Route path='/albums/:id' element={<Albums/>}/>
+            <Route path='/albums/tracks/:id'  element={<Tracks/>}/>
+            <Route path="/register" element={<Register/>} />
+          </Routes>
+        </Container>
+      </main>
+    </>
   );
 }
 
