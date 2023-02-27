@@ -6,6 +6,7 @@ import Tracks from "./features/tracks/Tracks";
 import Register from "./features/users/Register";
 import AppToolbar from "./Components/UI/AppToolbar/AppToolbar";
 import {Container} from "@mui/material";
+import Login from "./features/users/Login";
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
       <main>
         <Container maxWidth="xl">
           <Routes>
-            <Route path="/" element={<Artist/>}/>
-            <Route path='/albums/:id' element={<Albums/>}/>
-            <Route path='/albums/tracks/:id'  element={<Tracks/>}/>
+            <Route path="/" element={<Artist/>} />
+            <Route path='/albums/:id' element={<Albums/>} />
+            <Route path='/albums/tracks/:id'  element={<Tracks/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </Container>
       </main>
