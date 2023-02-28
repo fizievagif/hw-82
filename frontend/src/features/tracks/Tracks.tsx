@@ -1,18 +1,28 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {useParams} from "react-router-dom";
-import {Card, CardActionArea, CardContent, Grid, Typography} from "@mui/material";
+import {Navigate, useParams} from "react-router-dom";
+import {Button, Card, CardActionArea, CardContent, Grid, Typography} from "@mui/material";
 import {selectTracks} from "./tracksSlice";
-import {fetchTracks} from "./tracksThunks";
+import {addTrackToHistory, fetchTracks} from "./tracksThunks";
+import {selectUser} from "../users/usersSlice";
 
 const Tracks = () => {
   const dispatch = useAppDispatch();
   const tracks = useAppSelector(selectTracks);
   const {id} = useParams() as {id: string};
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchTracks(id));
   }, [dispatch, id]);
+
+  const onPlayClick = (id: string) => {
+    dispatch(addTrackToHistory(id));
+  };
+
+  if (!user) {
+    return <Navigate to="/login"/>
+  }
 
   return (
     <Grid container rowSpacing={1}>
@@ -32,6 +42,9 @@ const Tracks = () => {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            <Button variant="text" onClick={() => onPlayClick(track._id)}>
+              Play
+            </Button>
           </Card>
         )).sort((a, b) => a > b ? 1 : +1)}
       </Grid>

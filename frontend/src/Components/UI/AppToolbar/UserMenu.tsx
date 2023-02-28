@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User } from '../../../types';
-import { Button, Menu, MenuItem } from '@mui/material';
+import {Link} from 'react-router-dom';
+import {Button, Menu, MenuItem} from '@mui/material';
 
 interface Props {
   user: User;
@@ -30,9 +31,9 @@ const UserMenu: React.FC<Props> = ({user}) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem>
+          <Link to="/track_history" style={{textDecoration: "none", color: 'black'}}>Track History</Link>
+        </MenuItem>
       </Menu>
     </>
   );

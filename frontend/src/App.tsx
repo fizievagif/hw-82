@@ -7,6 +7,7 @@ import Register from "./features/users/Register";
 import AppToolbar from "./Components/UI/AppToolbar/AppToolbar";
 import {Container} from "@mui/material";
 import Login from "./features/users/Login";
+import TrackHistory from "./features/trackHistory/TrackHistory";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/albums/tracks/:id'  element={<Tracks/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/track_history" element={<TrackHistory/>}/>
           </Routes>
         </Container>
       </main>
