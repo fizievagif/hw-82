@@ -12,7 +12,6 @@ const TrackHistory: React.FC = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const trackHistory = useAppSelector(selectHistories);
-  console.log(trackHistory);
 
   useEffect(() => {
     dispatch(getTrackHistory());
