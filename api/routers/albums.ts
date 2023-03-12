@@ -1,27 +1,24 @@
-  import express from "express";
+import express from "express";
 import mongoose from "mongoose";
 import Album from "../models/Album";
 import {imagesUpload} from "../multer";
-import {AlbumType} from "../types";
+import auth from "../middleware/auth";
 
 const albumsRouter = express.Router();
 
-albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
+albumsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next) => {
   if (!req.body.title || !req.body.artist || !req.body.year) {
     return res.status(400).send({error: 'All fields are required'});
   }
 
-  const albumData: AlbumType = {
-    artist: req.body.artist,
-    title: req.body.title,
-    image: req.file ? req.file.filename : null,
-    year: req.body.year,
-  };
-
-  const album = new Album(albumData);
-
   try {
-    await album.save();
+    const album = await Album.create({
+      artist: req.body.artist,
+      title: req.body.title,
+      image: req.file ? req.file.filename : null,
+      year: req.body.year,
+    });
+
     return res.send(album);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {

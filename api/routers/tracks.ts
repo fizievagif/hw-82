@@ -1,27 +1,24 @@
 import express from "express";
 import mongoose from "mongoose";
 import Track from "../models/Track";
-import {TrackType} from "../types";
 import Album from "../models/Album";
+import auth from "../middleware/auth";
 
 const tracksRouter = express.Router();
 
-tracksRouter.post('/', async (req, res, next) => {
+tracksRouter.post('/', auth, async (req, res, next) => {
   if (!req.body.title || !req.body.album || !req.body.duration) {
     return res.status(400).send({error: 'All fields are required'});
   }
 
-  const trackData: TrackType = {
-    album: req.body.album,
-    title: req.body.title,
-    numberOfTrack: req.body.numberOfTrack,
-    duration: req.body.duration,
-  };
-
-  const track = new Track(trackData);
-
   try {
-    await track.save();
+    const track = await Track.create({
+      album: req.body.album,
+      title: req.body.title,
+      numberOfTrack: req.body.numberOfTrack,
+      duration: req.body.duration,
+    });
+
     return res.send(track);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {

@@ -3,6 +3,8 @@ import config from './config';
 import Artist from "./models/Artist";
 import Album from "./models/Album";
 import Track from "./models/Track";
+import User from "./models/User";
+import crypto from "crypto";
 
 const run = async () => {
   mongoose.set('strictQuery', false);
@@ -10,12 +12,30 @@ const run = async () => {
   const db = mongoose.connection;
 
   try {
+    await db.dropCollection('users');
     await db.dropCollection('albums');
     await db.dropCollection('artist');
     await db.dropCollection('tracks');
   } catch (e) {
     console.log('Collections were not present, skipping drop...');
   }
+
+  const [Vahtan, Vagif, Vahit] = await User.create({
+    username: 'Vahtan',
+    password: 'vaha123',
+    role: 'user',
+    token: crypto.randomUUID()
+  }, {
+    username: 'Vagif',
+    password: 'vaga123',
+    role: 'admin',
+    token: crypto.randomUUID()
+  }, {
+    username: 'Vahit',
+    password: 'vahit123',
+    role: 'user',
+    token: crypto.randomUUID()
+  });
 
   const [TravisScott, KendrickLamar] = await Artist.create({
     name: 'Travis Scott',

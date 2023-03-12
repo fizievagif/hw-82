@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { User } from '../../../types';
-import {Link} from 'react-router-dom';
 import {Button, Menu, MenuItem} from '@mui/material';
+import {useAppDispatch, useAppSelector} from "../../../app/hooks";
+import LoadingButton from '@mui/lab/LoadingButton';
+import {Link} from "react-router-dom";
+import {selectLogoutLoading} from "../../../features/users/usersSlice";
+import {logout} from "../../../features/users/usersThunks";
 
 interface Props {
   user: User;
 }
 
 const UserMenu: React.FC<Props> = ({user}) => {
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(selectLogoutLoading);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -15,6 +21,10 @@ const UserMenu: React.FC<Props> = ({user}) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -31,9 +41,20 @@ const UserMenu: React.FC<Props> = ({user}) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem>
-          <Link to="/track_history" style={{textDecoration: "none", color: 'black'}}>Track History</Link>
-        </MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        {loading ?
+          <LoadingButton
+            size="small"
+            color="secondary"
+            onClick={handleClick}
+            loading={loading}
+            loadingPosition="start"
+            variant="contained"
+          >
+            <span>Logout</span>
+          </LoadingButton>
+          :
+          <MenuItem component={Link} to={'/track_history'}>Track History</MenuItem>}
       </Menu>
     </>
   );

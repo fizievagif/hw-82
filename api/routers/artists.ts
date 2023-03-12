@@ -2,25 +2,22 @@ import express from "express";
 import mongoose from "mongoose";
 import Artist from "../models/Artist";
 import {imagesUpload} from "../multer";
-import {ArtistType} from "../types";
+import auth from "../middleware/auth";
 
 const artistsRouter = express.Router();
 
-artistsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
+artistsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next) => {
   if (!req.body.name) {
     return res.status(400).send({error: 'All fields are required'});
   }
 
-  const artistData: ArtistType = {
-    name: req.body.name,
-    image: req.file ? req.file.filename : null,
-    description: req.body.description
-  }
-
-  const artist = new Artist(artistData);
-
   try {
-    await artist.save();
+    const artist = await Artist.create({
+      name: req.body.name,
+      image: req.file ? req.file.filename : null,
+      description: req.body.description
+    });
+
     return res.send(artist);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {

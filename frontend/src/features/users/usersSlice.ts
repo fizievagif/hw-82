@@ -9,6 +9,7 @@ interface UsersState {
   registerError: ValidationError | null;
   loginLoading: boolean;
   loginError: GlobalError | null
+  logoutLoading: boolean;
 }
 
 const initialState: UsersState = {
@@ -17,12 +18,17 @@ const initialState: UsersState = {
   registerError: null,
   loginLoading: false,
   loginError: null,
+  logoutLoading: false,
 };
 
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    unsetUser: (state) => {
+      state.user = null;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(register.pending, (state) => {
       state.registerError = null;
@@ -53,10 +59,12 @@ export const usersSlice = createSlice({
 });
 
 export const usersReducer = usersSlice.reducer;
+export const { unsetUser } = usersSlice.actions;
 
 export const selectUser = (state: RootState) => state.users.user;
 export const selectRegisterLoading = (state: RootState) => state.users.registerLoading;
 export const selectRegisterError = (state: RootState) => state.users.registerError;
 export const selectLoginLoading = (state: RootState) => state.users.loginLoading;
 export const selectLoginError = (state: RootState) => state.users.loginError;
+export const selectLogoutLoading = (state: RootState) => state.users.logoutLoading;
 
