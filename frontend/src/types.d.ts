@@ -2,6 +2,13 @@ export interface ArtistType {
   _id: string;
   user: User;
   name: string;
+  description: string,
+  image: string | null;
+}
+
+export interface ArtistMutation {
+  name: string;
+  description: string,
   image: string | null;
 }
 
@@ -11,6 +18,13 @@ export interface AlbumsType {
   user: User;
   title: string;
   year: number;
+  image: string | null;
+}
+
+export interface AlbumMutation {
+  title: string;
+  year: string;
+  artist: string,
   image: string | null;
 }
 

@@ -4,7 +4,6 @@ import Album from "../models/Album";
 import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
 import permit from "../middleware/permit";
-import Albums from "../models/Artist";
 
 const albumsRouter = express.Router();
 
@@ -64,13 +63,13 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
   const user = (req as RequestWithUser).user;
 
   try {
-    const albums = await Albums.findById({_id: req.params.id, user: user._id});
+    const albums = await Album.findById({_id: req.params.id, user: user._id});
 
     if (!albums) {
       return res.status(403).send({error: "WRONG! You can't do this!"});
     }
 
-    await Albums.deleteOne({_id: req.params.id});
+    await Album.deleteOne({_id: req.params.id});
     res.send({message: 'Delete!'});
 
   } catch (e) {

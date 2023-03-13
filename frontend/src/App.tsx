@@ -8,6 +8,9 @@ import AppToolbar from "./Components/UI/AppToolbar/AppToolbar";
 import {Container} from "@mui/material";
 import Login from "./features/users/Login";
 import TrackHistory from "./features/trackHistory/TrackHistory";
+import NewAlbum from "./features/albums/NewAlbum";
+import NewArtist from "./features/artist/NewArtist";
+import NewTrack from "./features/tracks/NewTrack";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/track_history" element={<TrackHistory/>}/>
+            <Route path="/new-artist" element={<NewArtist/>}/>
+            <Route path="/new-album" element={<NewAlbum/>}/>
+            <Route path="/new-track" element={<NewTrack/>}/>
           </Routes>
         </Container>
       </main>

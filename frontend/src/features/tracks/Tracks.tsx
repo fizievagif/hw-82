@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {Navigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {Button, Card, CardActionArea, CardContent, Grid, Typography} from "@mui/material";
 import {selectTracks} from "./tracksSlice";
-import {addTrackToHistory, fetchTracks} from "./tracksThunks";
+import {addTrackToHistory, deleteTrack, fetchTracks} from "./tracksThunks";
 import {selectUser} from "../users/usersSlice";
-import {deleteAlbums} from "../albums/albumsThunks";
 
 const Tracks = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const tracks = useAppSelector(selectTracks);
   const {id} = useParams() as {id: string};
   const user = useAppSelector(selectUser);
@@ -22,8 +22,8 @@ const Tracks = () => {
   };
 
   const remove = (id: string) => {
-    dispatch(deleteAlbums(id));
-    // navigate('/');
+    dispatch(deleteTrack(id));
+    navigate('/');
   };
 
 

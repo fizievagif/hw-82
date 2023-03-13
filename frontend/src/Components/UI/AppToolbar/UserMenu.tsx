@@ -41,7 +41,7 @@ const UserMenu: React.FC<Props> = ({user}) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
         {loading ?
           <LoadingButton
             size="small"
@@ -54,7 +54,11 @@ const UserMenu: React.FC<Props> = ({user}) => {
             <span>Logout</span>
           </LoadingButton>
           :
-          <MenuItem component={Link} to={'/track_history'}>Track History</MenuItem>}
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>}
+        <MenuItem component={Link} to={'/track_history'}>Track History</MenuItem>
+        <MenuItem component={Link} to={'/new-artist'}>New Artist</MenuItem>
+        <MenuItem component={Link} to={'/new-album'}>New Album</MenuItem>
+        <MenuItem component={Link} to={'/new-track'}>New Track</MenuItem>
       </Menu>
     </>
   );
