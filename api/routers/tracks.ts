@@ -8,7 +8,7 @@ import permit from "../middleware/permit";
 const tracksRouter = express.Router();
 
 tracksRouter.post('/', auth, async (req, res, next) => {
-  if (!req.body.title || !req.body.album || !req.body.duration) {
+  if (!req.body.title || !req.body.duration) {
     return res.status(400).send({error: 'All fields are required'});
   }
 

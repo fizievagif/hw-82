@@ -37,6 +37,13 @@ export interface TracksType {
   duration: string;
 }
 
+export interface TrackMutation {
+  title: string;
+  album: string;
+  numberOfTrack: string;
+  duration: string;
+}
+
 export interface RegisterMutation {
   username: string;
   password: string;
