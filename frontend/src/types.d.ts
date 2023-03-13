@@ -1,5 +1,6 @@
 export interface ArtistType {
   _id: string;
+  user: User;
   name: string;
   image: string | null;
 }
@@ -7,6 +8,7 @@ export interface ArtistType {
 export interface AlbumsType {
   _id: string;
   artist: ArtistType;
+  user: User;
   title: string;
   year: number;
   image: string | null;
@@ -14,6 +16,7 @@ export interface AlbumsType {
 
 export interface TracksType {
   _id: string;
+  user: User;
   title: string;
   album: AlbumsType;
   numberOfTrack: number;
@@ -28,6 +31,7 @@ export interface RegisterMutation {
 export interface User {
   _id: string;
   username: string;
+  role: string;
   token: string;
 }
 

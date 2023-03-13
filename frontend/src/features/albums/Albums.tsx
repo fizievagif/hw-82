@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {selectAlbums} from "./albumsSlice";
-import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
-import {fetchAlbums} from "./albumsThunks";
+import {Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {deleteAlbums, fetchAlbums} from "./albumsThunks";
+import {selectUser} from "../users/usersSlice";
 
 const Albums = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
   const albums = useAppSelector(selectAlbums);
   const {id} = useParams() as {id: string};
   const cardImage  = 'http://localhost:8000/';
@@ -14,6 +17,11 @@ const Albums = () => {
   useEffect(() => {
     dispatch(fetchAlbums(id));
   }, [dispatch, id]);
+
+  const remove = (id: string) => {
+    dispatch(deleteAlbums(id));
+    navigate('/');
+  };
 
   return (
     <Grid container rowSpacing={1}>
@@ -37,6 +45,16 @@ const Albums = () => {
                   {album.year}
                 </Typography>
                 <Link to={'/albums/tracks/' + album._id}>View more</Link>
+
+                {user && user.role === 'admin' && (
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => remove(album._id)}
+                    style={{marginLeft: '10px'}}
+                  > Delete
+                  </Button>
+                )}
               </CardContent>
             </CardActionArea>
           </Card>

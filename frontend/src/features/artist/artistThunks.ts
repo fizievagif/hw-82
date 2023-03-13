@@ -9,3 +9,11 @@ export const fetchArtists = createAsyncThunk<ArtistType[]>(
     return response.data;
   }
 );
+
+export const deleteArtist = createAsyncThunk<void, string>(
+  'artists/delete',
+  async (id) => {
+
+    await axiosApi.delete('/artists/' + id);
+  }
+);

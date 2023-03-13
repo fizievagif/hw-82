@@ -5,6 +5,7 @@ import {Button, Card, CardActionArea, CardContent, Grid, Typography} from "@mui/
 import {selectTracks} from "./tracksSlice";
 import {addTrackToHistory, fetchTracks} from "./tracksThunks";
 import {selectUser} from "../users/usersSlice";
+import {deleteAlbums} from "../albums/albumsThunks";
 
 const Tracks = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,12 @@ const Tracks = () => {
   const onPlayClick = (id: string) => {
     dispatch(addTrackToHistory(id));
   };
+
+  const remove = (id: string) => {
+    dispatch(deleteAlbums(id));
+    // navigate('/');
+  };
+
 
   if (!user) {
     return <Navigate to="/login"/>
@@ -45,6 +52,16 @@ const Tracks = () => {
             <Button variant="text" onClick={() => onPlayClick(track._id)}>
               Play
             </Button>
+
+            {user && user.role === 'admin' && (
+              <Button
+                variant="text"
+                color="error"
+                onClick={() => remove(track._id)}
+                style={{marginLeft: '10px'}}
+              > Delete
+              </Button>
+            )}
           </Card>
         )).sort((a, b) => a > b ? 1 : +1)}
       </Grid>

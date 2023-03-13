@@ -31,6 +31,14 @@ export const addTrackToHistory = createAsyncThunk<void, string, {state: RootStat
   }
 );
 
+export const deleteTrack = createAsyncThunk<void, string>(
+  'track/delete',
+  async (id) => {
+
+    await axiosApi.delete('/tracks/' + id);
+  }
+);
+
 export const getTrackHistory = createAsyncThunk<TrackHistoryType[], void>(
   "track/getHistory", async () => {
   const response = await axiosApi.get("/track_history");
