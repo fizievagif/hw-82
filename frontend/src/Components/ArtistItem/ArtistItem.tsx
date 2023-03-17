@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {selectUser} from "../../features/users/usersSlice";
@@ -37,18 +37,19 @@ const ArtistItem: React.FC<Props> = ({id, name, image}) => {
             <Typography gutterBottom variant="h5" component="div">
               <Link to={'/albums/' + id}>{name}</Link>
             </Typography>
-
-            {user && user.role === 'admin' && (
-              <Button
-                variant="outlined"
-                color="error"
-                onClick={() => remove(id)}
-                style={{marginLeft: '10px'}}
-              > Delete
-              </Button>
-            )}
           </CardContent>
         </CardActionArea>
+        {user && user.role === 'admin' && (
+          <CardActions>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => remove(id)}
+              style={{marginLeft: '10px'}}
+            > Delete
+            </Button>
+          </CardActions>
+        )}
       </Card>
   );
 };

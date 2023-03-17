@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {selectAlbums} from "./albumsSlice";
-import {Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {deleteAlbums, fetchAlbums} from "./albumsThunks";
 import {selectUser} from "../users/usersSlice";
@@ -44,19 +44,21 @@ const Albums = () => {
                 <Typography gutterBottom variant="h5" component="div">
                   {album.year}
                 </Typography>
-                <Link to={'/albums/tracks/' + album._id}>View more</Link>
 
-                {user && user.role === 'admin' && (
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => remove(album._id)}
-                    style={{marginLeft: '10px'}}
-                  > Delete
-                  </Button>
-                )}
               </CardContent>
             </CardActionArea>
+            <CardActions>
+              <Link to={'/albums/tracks/' + album._id}>View more</Link>
+              {user && user.role === 'admin' && (
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => remove(album._id)}
+                  style={{marginLeft: '10px'}}
+                > Delete
+                </Button>
+              )}
+            </CardActions>
           </Card>
         )).reverse()}
       </Grid>

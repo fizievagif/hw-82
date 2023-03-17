@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { User } from '../../../types';
-import {Button, Menu, MenuItem} from '@mui/material';
+import {Avatar, Button, IconButton, Menu, MenuItem} from '@mui/material';
 import {useAppDispatch, useAppSelector} from "../../../app/hooks";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {Link} from "react-router-dom";
@@ -15,6 +15,8 @@ const UserMenu: React.FC<Props> = ({user}) => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectLogoutLoading);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const avatar  = 'http://localhost:8000/';
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -30,11 +32,14 @@ const UserMenu: React.FC<Props> = ({user}) => {
   return (
     <>
       <Button
-        onClick={handleClick}
         color="inherit"
       >
-        Hello, {user.username}
+        Hello, {user.displayName}
       </Button>
+
+      <IconButton onClick={handleClick} sx={{ p: 0 }}>
+        <Avatar alt={user.displayName} src={user.avatar ? avatar + user.avatar : ''} />
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         keepMounted

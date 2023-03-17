@@ -29,4 +29,7 @@ export interface IUser {
   password: string,
   token: string,
   role: string,
+  displayName: string,
+  avatar: string | null,
+  googleId?: string,
 }

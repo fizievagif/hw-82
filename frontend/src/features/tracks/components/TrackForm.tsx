@@ -24,7 +24,7 @@ const TrackForm: React.FC<Props> = ({onSubmit}) => {
 
   useEffect(() => {
     dispatch(fetchAlbums(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const submitFormHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,6 +67,7 @@ const TrackForm: React.FC<Props> = ({onSubmit}) => {
 
         <Grid item xs>
           <TextField
+            type='number'
             multiline rows={3}
             id="duration" label="Duration"
             value={state.duration}

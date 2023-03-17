@@ -31,10 +31,29 @@ export const addTrackToHistory = createAsyncThunk<void, string, {state: RootStat
   }
 );
 
+// export const createTrack = createAsyncThunk<void, TrackMutation>(
+//   'tracks/create',
+//   async () => {
+//     await axiosApi.post('/tracks');
+//   }
+// );
+
 export const createTrack = createAsyncThunk<void, TrackMutation>(
   'tracks/create',
-  async () => {
-    await axiosApi.post('/tracks');
+  async (postMutation) => {
+    const formData = new FormData();
+
+    const keys = Object.keys(postMutation) as (keyof TrackMutation)[];
+
+    keys.forEach(key => {
+      const value = postMutation[key];
+
+      if (value !== null) {
+        formData.append(key, value);
+      }
+    });
+
+    await axiosApi.post('/tracks', formData);
   }
 );
 

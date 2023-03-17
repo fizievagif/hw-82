@@ -23,16 +23,19 @@ const run = async () => {
   const [Vahtan, Vagif, Admin] = await User.create({
     username: 'Vahtan',
     password: 'vaha123',
+    displayName: 'Vahtan',
     role: 'user',
     token: crypto.randomUUID()
   }, {
     username: 'Vagif',
     password: 'vaga123',
+    displayName: 'Vagif',
     role: 'user',
     token: crypto.randomUUID()
   }, {
     username: 'Admin',
     password: 'admin123',
+    displayName: 'Admin',
     role: 'admin',
     token: crypto.randomUUID()
   });

@@ -47,11 +47,15 @@ export interface TrackMutation {
 export interface RegisterMutation {
   username: string;
   password: string;
+  displayName: string;
+  avatar: string | null
 }
 
 export interface User {
   _id: string;
   username: string;
+  displayName: string;
+  avatar: string | null;
   role: string;
   token: string;
 }
@@ -80,11 +84,6 @@ export interface LoginMutation {
 
 export interface GlobalError {
   error: string;
-}
-
-export interface TrackHistoryMutation {
-  user: string;
-  track: string;
 }
 
 export interface TrackHistoryType {

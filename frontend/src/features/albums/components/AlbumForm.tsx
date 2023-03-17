@@ -62,6 +62,7 @@ const AlbumForm: React.FC<Props> = ({onSubmit}) => {
 
         <Grid item xs>
           <TextField
+            type='number'
             multiline rows={3}
             id="year" label="Year"
             value={state.year}
